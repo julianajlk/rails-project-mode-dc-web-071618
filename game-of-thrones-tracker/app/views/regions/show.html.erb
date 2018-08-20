@@ -1,3 +1,10 @@
+<h1>Region</h1>
 <%= @region.name %><br>
 
+Houses in this Region:<br>
+<% @region.houses.sort_by {|h| h.name}.each do |house| %>
+  <%= link_to house.name, house_path(house) %><br>
+<% end %>
+
+<br>
 <%= link_to "Back to All Regions", regions_path %>

@@ -1,6 +1,7 @@
+<h1>All Characters</h1>
 <% @characters.each do |character| %>
 <%= link_to character.name, character_path(character) %>
-<%= link_to "Add to My Characters", new_user_character_path %>
+<%= link_to "Add to My Characters", "/user_characters/new/#{character.id}" %>
 <br>
 <% end %>
 

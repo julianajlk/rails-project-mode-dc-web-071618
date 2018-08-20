@@ -5,36 +5,50 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'rest-client'
+
 Region.destroy_all
 House.destroy_all
-Location.destroy_all
 Character.destroy_all
 User.destroy_all
 UserCharacter.destroy_all
 
+api_regions = RestClient.get('https://api.got.show/api/regions/')
+regions = JSON.parse(api_regions)
 
-region_north = Region.create(name: "The North")
+regions.each do |region|
+  Region.create(
+    name: region["name"]
+  )
+end
 
-house_stark = House.create(name: "Stark", region: region_north)
+api_houses = RestClient.get('https://api.got.show/api/houses/')
+houses = JSON.parse(api_houses)
 
-location = Location.create(name: "Winterfell", region: region_north)
+houses.each do |house|
+  House.create(
+    name: house["name"],
+    coat_of_arms: house["coatOfArms"],
+    words: house["words"],
+    region: Region.find_by(name: house["region"]),
+    founded: house["founded"],
+    image_link: house["imageLink"]
+  )
+end
 
-jon_snow = Character.create(name: "Jon Snow", male: true, house: house_stark)
-ned_stark = Character.create(name: "Ned Stark", male: true, house: house_stark)
-robb_stark = Character.create(name: "Robb Stark", male: true, house: house_stark)
-catelyn_stark = Character.create(name: "Catelyn Stark", male: false, house: house_stark)
-sansa_stark = Character.create(name: "Sansa Stark", male: false, house: house_stark)
+api_characters = RestClient.get('https://api.got.show/api/characters/')
+characters = JSON.parse(api_characters)
+
+characters.each do |character|
+  Character.create(
+    name: character["name"],
+    male: character["male"],
+    house: House.find_by(name: character["house"]),
+    culture: character["culture"],
+    titles: character["titles"],
+    image_link: character["imageLink"]
+  )
+end
 
 user1 = User.create(username: "user1", password: "password1", email: "user1@email.com")
 user2 = User.create(username: "user2", password: "password2", email: "user2@email.com")
-
-js1 = UserCharacter.create(character: jon_snow, user: user1, status: "alive", location: location)
-js2 = UserCharacter.create(character_id: jon_snow.id, user_id: user2.id, status: "alive", location: nil)
-ns1 = UserCharacter.create(character_id: ned_stark.id, user_id: user1.id)
-ns2 = UserCharacter.create(character_id: ned_stark.id, user_id: user2.id)
-rs1 = UserCharacter.create(character_id: robb_stark.id, user_id: user1.id)
-rs2 = UserCharacter.create(character_id: robb_stark.id, user_id: user2.id)
-cs1 = UserCharacter.create(character_id: catelyn_stark.id, user_id: user1.id)
-cs2 = UserCharacter.create(character_id: catelyn_stark.id, user_id: user2.id)
-
-#Locations

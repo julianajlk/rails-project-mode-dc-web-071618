@@ -1,12 +1,24 @@
-<%= @character.name %><br>
-<% if @character.male == true %>
-  male
-<% else %>
-  female
-<% end %>
+<h1><%= @character.name %></h1>
+House: <%= link_to @character.house.name, house_path(@character.house) %><br>
+<% if !@character.titles.empty? %>
+  Title(s): <% @character.titles.each do |title| %>
+    <%= title %>
+  <% end %>
+<% end %><br>
+Gender:
+  <% if @character.male == true %>
+    male
+  <% else %>
+    female
+  <% end %><br>
+<% if @character.culture %>
+  Culture: <%= @character.culture %>
+<% end %><br>
 <br>
+<% if @character.image_link %>
+<img src=<%= "https://api.got.show#{@character.image_link}"%>>
+<% end %><br>
 
-<% link_to "Add to My Characters", new_user_character_path %>
-<br>
+<%= link_to "Add to My Characters", "/user_characters/new/#{@character.id}" %> <br>
 
 <%= link_to "All Characters", characters_path %>

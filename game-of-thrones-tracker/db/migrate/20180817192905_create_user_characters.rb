@@ -4,7 +4,7 @@ class CreateUserCharacters < ActiveRecord::Migration[5.2]
       t.integer :character_id
       t.integer :user_id
       t.integer :status, default: 0
-      t.integer :location_id
+      t.integer :region_id
       t.string :note
 
       t.timestamps

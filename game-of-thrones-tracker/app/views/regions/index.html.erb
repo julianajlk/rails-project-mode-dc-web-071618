@@ -1,6 +1,5 @@
-<% @regions.each do |region| %>
+<h1>All Regions</h1>
+<% @regions.sort_by {|r| r.name}.each do |region| %>
 <%= link_to region.name, region_path(region) %>
 <br>
 <% end %>
-
-<%= link_to "View All Regions", regions_path %>

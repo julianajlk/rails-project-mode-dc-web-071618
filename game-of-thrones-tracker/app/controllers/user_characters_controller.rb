@@ -9,7 +9,7 @@ class UserCharactersController < ApplicationController
   end
 
   def new
-    @user_character = UserCharacter.new
+    @user_character = UserCharacter.new(character_id: params[:id])
   end
 
   def create
@@ -42,7 +42,7 @@ class UserCharactersController < ApplicationController
 
   private
   def user_character_params
-    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :location_id)
+    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :region_id)
   end
 
 end

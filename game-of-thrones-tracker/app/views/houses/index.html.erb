@@ -1,6 +1,5 @@
-<% @houses.each do |house| %>
+<h1>All Houses</h1>
+<% @houses.sort_by {|h| h.name}.each do |house| %>
 <%= link_to house.name, house_path(house) %>
 <br>
 <% end %>
-
-<%= link_to "View All Houses", houses_path %>

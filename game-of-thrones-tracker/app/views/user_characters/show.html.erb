@@ -1,13 +1,16 @@
+<h1>My Character</h1>
 <%= @user_character.character.name %><br>
-<%= @user_character.status %><br>
-<%= @user_character.note %><br>
-<% if @user_character.location %>
-  <%= @user_character.location.name %>
+Status: <%= @user_character.status %><br>
+Region: <% if @user_character.region %>
+  <%= @user_character.region.name %>
 <% else %>
-  unknown location
+  unknown region
 <% end %>
 <br>
-
+<% if @user_character.region %>
+Note: <%= @user_character.note %><br>
+<% end %>
+<br>
 <%= link_to "Edit this Character", edit_user_character_path(@user_character) %><br>
 <%= link_to "Delete this Character", user_character_path(@user_character), method: "delete", data: {confirm: "Delete this character?"} %><br>
 <%= link_to "Back to My Characters", user_characters_path %>
