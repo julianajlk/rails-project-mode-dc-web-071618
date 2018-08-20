@@ -1,3 +1,12 @@
+<ul>
+<% if @user_character.errors.any? %>
+  <% @user_character.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+</ul>
+<br>
+
 <%= form_for @user_character do |f| %>
   <%= f.label :character %>
   <%= f.collection_select :character_id, Character.all, :id, :name %>
@@ -5,6 +14,18 @@
   <%= f.collection_select :user_id, User.all, :id, :username %>
   <%= f.label :status %>
   <%= f.select(:status, ["unknown", "alive", "dead"]) %>
+  <%= f.label :location %>
+  <%= f.collection_select :location_id, Location.all, :id, :name %>
+  <!-- <%= f.fields_for :location, @user_character.location do |l| %>
+    <%= l.text_field :name %>
+  <% end %> -->
+  
+  <!-- <%= f.text_field :location, list: "locations_autocomplete" %>
+  <datalist id="locations_autocomplete" >
+    <% Location.all.each do |location| %>
+    <option value = "<%= location.name %>">
+    <% end %>
+  </datalist> -->
   <%= f.label :note %>
   <%= f.text_area :note %>
   <%= f.submit %>

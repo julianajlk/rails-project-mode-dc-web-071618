@@ -1,5 +1,10 @@
 <%= @character.name %><br>
-<%= @character.gender %><br>
+<% if @character.male == true %>
+  male
+<% else %>
+  female
+<% end %>
+<br>
 
 <% link_to "Add to My Characters", new_user_character_path %>
 <br>

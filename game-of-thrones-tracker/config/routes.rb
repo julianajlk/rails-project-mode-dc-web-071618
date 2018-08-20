@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :regions
+  resources :houses
   resources :users
   resources :characters
   resources :user_characters

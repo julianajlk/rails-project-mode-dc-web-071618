@@ -10,11 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_192905) do
+ActiveRecord::Schema.define(version: 2018_08_20_160105) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "gender"
+    t.boolean "male"
+    t.integer "house_id"
+    t.string "culture"
+    t.text "titles"
+    t.string "image_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.string "name"
+    t.string "coat_of_arms"
+    t.string "words"
+    t.integer "region_id"
+    t.string "founded"
+    t.string "image_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.integer "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

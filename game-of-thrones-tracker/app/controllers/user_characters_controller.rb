@@ -42,7 +42,7 @@ class UserCharactersController < ApplicationController
 
   private
   def user_character_params
-    params.require(:user_character).permit(:character_id, :user_id, :status, :note)
+    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :location_id)
   end
 
 end
