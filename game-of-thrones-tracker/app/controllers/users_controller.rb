@@ -4,12 +4,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+  end
+
   def create
     @user = User.create(user_params)
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect_to user_characters_path
+      redirect_to user_path(@user)
     else
       render :new
     end

@@ -12,4 +12,4 @@ Note: <%= @user_character.note %><br>
 <br>
 <%= link_to "Edit this Character", edit_user_character_path(@user_character) %><br>
 <%= link_to "Delete this Character", user_character_path(@user_character), method: "delete", data: {confirm: "Delete this character?"} %><br>
-<%= link_to "Back to My Characters", user_characters_path %>
+<%= link_to "Back to My Characters", user_path(session[:user_id]) %>

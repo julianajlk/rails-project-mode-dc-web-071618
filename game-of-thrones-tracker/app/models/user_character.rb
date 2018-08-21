@@ -5,5 +5,6 @@ class UserCharacter < ApplicationRecord
 
   enum status: [:unknown, :alive, :dead]
 
-  validates :character_id, presence: true, uniqueness: true
+  validates :character_id, presence: true
+  validates_uniqueness_of :character_id, scope: [:user_id]
 end

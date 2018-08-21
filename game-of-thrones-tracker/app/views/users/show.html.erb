@@ -1,0 +1,10 @@
+<h1>Welcome <%= current_username.capitalize %>!</h1>
+
+My Characters:<br>
+<% @user.user_characters.each do |user_character| %>
+<%= link_to user_character.character.name, user_character_path(user_character) %>
+<br>
+<% end %>
+
+<%= link_to "View All Characters", characters_path %>
+<%= link_to "Add New Character", new_user_character_path  %>
