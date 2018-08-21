@@ -1,9 +1,10 @@
-<h1>Region</h1>
-<%= @region.name %><br>
+<h1><%= @region.name %></h1>
 
+<% if !@region.houses.empty? %>
 Houses in this Region:<br>
-<% @region.houses.sort_by {|h| h.name}.each do |house| %>
-  <%= link_to house.name, house_path(house) %><br>
+  <% @region.houses.sort_by {|h| h.name}.each do |house| %>
+    <%= link_to house.name, house_path(house) %><br>
+  <% end %>
 <% end %>
 
 <br>

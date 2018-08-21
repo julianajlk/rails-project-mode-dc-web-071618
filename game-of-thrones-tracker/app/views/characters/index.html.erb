@@ -10,27 +10,32 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
 
-  </head>
-  <body>
-    <div class="container-fluid">
-      <h1>All Characters</h1>
+<h4>Search by Region, House, or Character</h4>
 
-      <h4>Search by House</h4>
-        <%= form_tag(characters_path, method: :get) do %>
-          <%= text_field_tag(:search, params[:search]) %>
-          <%= submit_tag ("Search") %>
-        <% end %>
+<div class="error">
+  <%= flash.notice %>
+</div>
 
-        <% @characters.each do |character| %>
-        <p><%= link_to character.name, character_path(character) %></p>
+  <%= form_tag(characters_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("Search") %>
+  <% end %>
 
-        <p><i class="fas fa-plus"></i>
-            <%= link_to "Add to My Characters", "/user_characters/new/#{character.id}" %><br>
-            <% end %>
-        </p>
+  <%= form_tag(characters_path, method: :get) do %>
+    <%= hidden_field_tag(:search, value = nil) %>
+    <%= submit_tag ("Clear Filter") %>
+  <% end %>
 
-        <h4><%= link_to "View My Characters", user_characters_path %></h4>
-      </div>
+<br>
+
+<% @characters.each do |character| %>
+<%= link_to character.name, character_path(character) %>
+<%= link_to "Add to My Characters", "/user_characters/new/#{character.id}" %>
+<br>
+<% end %>
+
+<h4><%= link_to "View My Characters", user_characters_path %></h4>
+
 
   <!-- JQuery, Popper.js, Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
