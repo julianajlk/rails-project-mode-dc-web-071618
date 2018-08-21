@@ -1,4 +1,13 @@
 <h1>All Regions</h1>
+
+<div>
+<h3>Filter Regions:</h3>
+<%= form_tag("/regions", method: "get") do %>
+  <%= select_tag "houses", options_for_select(["has houses"]), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+</div>
+
 <% @regions.sort_by {|r| r.name}.each do |region| %>
 <%= link_to region.name, region_path(region) %>
 <br>

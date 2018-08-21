@@ -1,6 +1,12 @@
 class RegionsController < ApplicationController
   def index
-    @regions = Region.all
+    if !params[:houses].blank?
+      if params[:houses] == "has houses"
+        @regions = Region.has_houses
+      end
+    else
+      @regions = Region.all
+    end
   end
 
   def show
