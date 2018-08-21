@@ -6,22 +6,29 @@ class Character < ApplicationRecord
 
   serialize :titles, Array
 
+  def self.characters_by_region(region)
+    Character.select { |c| c.house.region == region }
+  end
   # include Filterable
 
   def self.search(search)
     if search
-      house = House.find_by(name: search)
-      region = Region.find_by(name: search)
-      if house
-        self.where(house_id: house)
-      elsif region
-        self.joins(:houses).where(houses: {region_id: region})
+      character = Character.find_by(name: search)
+      if character
+        [character]
       else
-        Character.all
+        house = House.find_by(name: search)
+        if house
+          where(house_id: house)
+        else
+          region = Region.find_by(name: search)
+          if region
+            characters_by_region(region)
+          end
+        end
       end
-    else
-      Character.all
     end
   end
+
 
 end

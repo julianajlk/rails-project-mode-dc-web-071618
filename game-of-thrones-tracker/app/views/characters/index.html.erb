@@ -1,10 +1,22 @@
 <h1>All Characters</h1>
 
-<h4>Search by House</h4>
+<h4>Search by Region, House, or Character</h4>
+
+<div class="error">
+  <%= flash.notice %>
+</div>
+
   <%= form_tag(characters_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag ("Search") %>
   <% end %>
+
+  <%= form_tag(characters_path, method: :get) do %>
+    <%= hidden_field_tag(:search, value = nil) %>
+    <%= submit_tag ("Clear Filter") %>
+  <% end %>
+
+<br>
 
 <% @characters.each do |character| %>
 <%= link_to character.name, character_path(character) %>

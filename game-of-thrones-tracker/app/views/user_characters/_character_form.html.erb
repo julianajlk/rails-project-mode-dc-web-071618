@@ -10,13 +10,12 @@
 <%= form_for @user_character do |f| %>
   <%= f.label :character %>
   <%= f.collection_select :character_id, Character.all, :id, :name %>
-  <%= f.label :user %>
-  <%= f.collection_select :user_id, User.all, :id, :username %>
   <%= f.label :status %>
   <%= f.select(:status, ["unknown", "alive", "dead"]) %>
   <%= f.label :region_id %>
   <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: 'Unknown' %>
   <%= f.label :note %>
   <%= f.text_area :note %>
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
   <%= f.submit %>
 <% end %>

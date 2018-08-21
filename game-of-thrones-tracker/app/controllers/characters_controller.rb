@@ -1,7 +1,12 @@
 class CharactersController < ApplicationController
 
   def index
-    @characters = Character.search(params[:search])
+    search = Character.search(params[:search])
+    if search
+      @characters = search
+    else
+      @characters = Character.all
+    end
   end
 
   def show
