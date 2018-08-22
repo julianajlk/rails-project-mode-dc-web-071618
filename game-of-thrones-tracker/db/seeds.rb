@@ -17,24 +17,41 @@ api_regions = RestClient.get('https://api.got.show/api/regions/')
 regions = JSON.parse(api_regions)
 
 regions.each do |region|
-  Region.create(
-    name: region["name"]
-  )
+  duplicates = ["The North", "The Crownlands", "Red waste", "The Westerlands", "The Riverlands", "The Reach", "The Stormlands", "Others", "The Vale"]
+  if duplicates.exclude?(region["name"])
+    Region.create(
+      name: region["name"]
+    )
+  end
 end
 
 api_houses = RestClient.get('https://api.got.show/api/houses/')
 houses = JSON.parse(api_houses)
 
 houses.each do |house|
+  case house["region"]
+  when "The North"
+    region = "North"
+  when "The Westerlands"
+    region = "Westerlands"
+  when "The Reach"
+    region = "Reach"
+  when "The Vale"
+    region = "Vale of Arryn"
+  else
+    region = house["region"]
+  end
   House.create(
     name: house["name"],
     coat_of_arms: house["coatOfArms"],
     words: house["words"],
-    region: Region.find_by(name: house["region"]),
+    region: Region.find_by(name: region),
     founded: house["founded"],
     image_link: house["imageLink"]
   )
 end
+
+
 
 api_characters = RestClient.get('https://api.got.show/api/characters/')
 characters = JSON.parse(api_characters)
