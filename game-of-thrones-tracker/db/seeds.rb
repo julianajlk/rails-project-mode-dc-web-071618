@@ -50,5 +50,5 @@ characters.each do |character|
   )
 end
 
-user1 = User.create(username: "user1", password: "password1", email: "user1@email.com")
-user2 = User.create(username: "user2", password: "password2", email: "user2@email.com")
+user1 = User.create(username: "user1", email: "user1@email.com")
+user2 = User.create(username: "user2", email: "user2@email.com")

@@ -1,4 +1,9 @@
 <h1><%= @user_character.character.name %></h1>
+House: <% if @user_character.house %>
+  <%= link_to @user_character.house.name, house_path(@user_character.house) %>
+<% else %>
+  unknown house
+<% end %><br>
 Status: <%= @user_character.status %><br>
 Region: <% if @user_character.region %>
   <%= @user_character.region.name %>
