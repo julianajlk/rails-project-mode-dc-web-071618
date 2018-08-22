@@ -23,6 +23,7 @@ class UserCharactersController < ApplicationController
 
   def edit
     @user_character = UserCharacter.find(params[:id])
+    @user_character.location = Location.new
   end
 
   def update
@@ -42,7 +43,7 @@ class UserCharactersController < ApplicationController
 
   private
   def user_character_params
-    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :region_id)
+    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :location_id, location_attributes: [:name, :description, :region_id])
   end
 
 end

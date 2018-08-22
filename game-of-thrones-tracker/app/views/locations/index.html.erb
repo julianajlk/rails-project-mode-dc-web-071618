@@ -1,0 +1,21 @@
+<h1>All Locations</h1>
+
+<!-- Need to rework filter to allow you to choose a region -->
+<!-- <div>
+<h3>Filter Locations:</h3>
+<%= form_tag("/locations", method: "get") do %>
+  <%= select_tag "filter", options_for_select(["REGIONS GO HERE"]), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+</div> -->
+<!-- <%= form_tag("/locations", method: "get") do %>
+  <%= hidden_field_tag("filter", value = nil) %>
+  <%= submit_tag ("Clear Filter") %>
+<% end %> -->
+
+<% @locations.sort_by {|l| l.name}.each do |location| %>
+<%= link_to location.name, location_path(location) %>
+<br>
+<% end %>
+
+<%= link_to "Create new location", new_location_path %>

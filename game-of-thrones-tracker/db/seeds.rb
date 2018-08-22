@@ -8,6 +8,7 @@
 require 'rest-client'
 
 Region.destroy_all
+Location.destroy_all
 House.destroy_all
 Character.destroy_all
 User.destroy_all
@@ -23,6 +24,20 @@ regions.each do |region|
       name: region["name"]
     )
   end
+end
+
+locations = [
+  {name: "Winterfell", region: "North", description: "a castle that is the seat of House Stark"},
+  {name: "Eyrie", region: "Vale of Arryn", description: "a castle that is considered impregnable to attack and is the seat of House Arryn"},
+  {name: "King's Landing", region: "Crownlands", description: "the capital of the Seven Kingdoms"}
+  ]
+  
+locations.each do |location|
+  Location.create(
+    name: location[:name],
+    description: location[:description],
+    region: Region.find_by(name: location[:region])
+  )
 end
 
 api_houses = RestClient.get('https://api.got.show/api/houses/')
@@ -51,8 +66,6 @@ houses.each do |house|
   )
 end
 
-
-
 api_characters = RestClient.get('https://api.got.show/api/characters/')
 characters = JSON.parse(api_characters)
 
@@ -67,5 +80,5 @@ characters.each do |character|
   )
 end
 
-user1 = User.create(username: "user1", email: "user1@email.com")
-user2 = User.create(username: "user2", email: "user2@email.com")
+user1 = User.create(username: "user1", email: "user1@email.com", password: "password1")
+user2 = User.create(username: "user2", email: "user2@email.com", password: "password2")
