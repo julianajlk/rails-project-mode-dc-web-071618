@@ -8,6 +8,7 @@
 require 'rest-client'
 
 Region.destroy_all
+Location.destroy_all
 House.destroy_all
 Character.destroy_all
 User.destroy_all
@@ -17,8 +18,25 @@ api_regions = RestClient.get('https://api.got.show/api/regions/')
 regions = JSON.parse(api_regions)
 
 regions.each do |region|
-  Region.create(
-    name: region["name"]
+  duplicates = ["The North", "The Crownlands", "Red waste", "The Westerlands", "The Riverlands", "The Reach", "The Stormlands", "Others", "The Vale"]
+  if duplicates.exclude?(region["name"])
+    Region.create(
+      name: region["name"]
+    )
+  end
+end
+
+locations = [
+  {name: "Winterfell", region: "North", description: "a castle that is the seat of House Stark"},
+  {name: "Eyrie", region: "Vale of Arryn", description: "a castle that is considered impregnable to attack and is the seat of House Arryn"},
+  {name: "King's Landing", region: "Crownlands", description: "the capital of the Seven Kingdoms"}
+  ]
+  
+locations.each do |location|
+  Location.create(
+    name: location[:name],
+    description: location[:description],
+    region: Region.find_by(name: location[:region])
   )
 end
 
@@ -26,11 +44,23 @@ api_houses = RestClient.get('https://api.got.show/api/houses/')
 houses = JSON.parse(api_houses)
 
 houses.each do |house|
+  case house["region"]
+  when "The North"
+    region = "North"
+  when "The Westerlands"
+    region = "Westerlands"
+  when "The Reach"
+    region = "Reach"
+  when "The Vale"
+    region = "Vale of Arryn"
+  else
+    region = house["region"]
+  end
   House.create(
     name: house["name"],
     coat_of_arms: house["coatOfArms"],
     words: house["words"],
-    region: Region.find_by(name: house["region"]),
+    region: Region.find_by(name: region),
     founded: house["founded"],
     image_link: house["imageLink"]
   )
@@ -50,5 +80,5 @@ characters.each do |character|
   )
 end
 
-user1 = User.create(username: "user1", email: "user1@email.com")
-user2 = User.create(username: "user2", email: "user2@email.com")
+user1 = User.create(username: "user1", email: "user1@email.com", password: "password1")
+user2 = User.create(username: "user2", email: "user2@email.com", password: "password2")

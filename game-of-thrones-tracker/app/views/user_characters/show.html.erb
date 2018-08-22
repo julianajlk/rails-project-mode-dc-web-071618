@@ -5,13 +5,15 @@ House: <% if @user_character.house %>
   unknown house
 <% end %><br>
 Status: <%= @user_character.status %><br>
-Region: <% if @user_character.region %>
-  <%= @user_character.region.name %>
+Location: <% if @user_character.location.name %>
+  <%= link_to @user_character.location.name, location_path(@user_character.location) %><br>
+  in Region <%= @user_character.location.region.name %>
 <% else %>
-  unknown region
+  unknown
 <% end %>
+
 <br>
-<% if @user_character.region %>
+<% if @user_character.note %>
 Note: <%= @user_character.note %><br>
 <% end %>
 <br>

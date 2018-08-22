@@ -1,0 +1,17 @@
+<h1><%= @location.name %></h1>
+<%= @location.description %><br>
+<% if @location.region %>
+Region: <%= link_to @location.region.name, region_path(@location.region) %><br>
+<% end %>
+
+<% if @location.user_characters %>
+  My Characters in this Location:<br>
+  <% @location.user_characters.each do |user_character| %>
+    <%= link_to user_character.character.name, user_character_path(user_character) %><br>
+  <% end %>
+<% end %>
+
+<br>
+<%= link_to "Edit this Location", edit_location_path(@location) %><br>
+<%= link_to "Delete this Location", location_path(@location), method: "delete", data: {confirm: "Delete this location?"} %><br>
+<%= link_to "Back to All Locations", locations_path %>
