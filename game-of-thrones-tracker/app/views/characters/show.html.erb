@@ -19,6 +19,6 @@ Gender:
 <img src=<%= "https://api.got.show#{@character.image_link}"%>>
 <% end %><br>
 
-<%= link_to "Add to My Characters", "/user_characters/new/#{@character.id}" %> <br>
+<button><%= link_to "Add to My Characters", "/user_characters/new/#{@character.id}" %><br></button>
 
-<%= link_to "All Characters", characters_path %>
+<button><%= link_to "All Characters", characters_path %></button>

@@ -13,3 +13,124 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Lato|MedievalSharp');
+
+ h1 {
+   font-family: 'MedievalSharp', cursive;
+   padding: 100px 0px 30px;
+ }
+
+ h2, h3, h4, h5, h6 {
+   font-family: 'Lato', sans-serif;
+ }
+
+ p {
+   font-family: 'Lato', sans-serif;
+ }
+
+ /* imgs */
+ .logo-background img {
+   /* display: block; */
+   margin-left: auto;
+   margin-right: auto;
+   /* width: 100%; */
+   height: auto;
+   z-index: 5;
+ }
+
+ /* background parallax */
+ .parallax {
+    /* The image used */
+    background-image: url("fire_ice_logo.jpg");
+    /* background-image: url("background_fire_ice.jpg"); */
+    max-width: 100%;
+
+    /* Set a specific height */
+    height: 300px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ /* navigation */
+ .login-nav {
+   display: inline;
+   float: right;
+ }
+
+.login-nav a {
+  font-size: 1.8em;
+  text-transform: none;
+}
+
+.login-nav a:hover {
+  color: #000;
+}
+
+.menu-links {
+  padding: 20px;
+  background: #000;
+  width: 100%;
+  display: block;
+  float: none;
+  z-index: 4;
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto;
+}
+
+.menu-links a {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  padding-right: 30px;
+}
+
+ /* buttons */
+
+button {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.search-button {
+  background-color: #51b8f9; /* blue */
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.add-button {
+  padding: 0px 20px 40px;
+  color: #ff944b;
+}
+
+/* links */
+a:link {
+  color: #ff944b; /* orange */
+ }
+
+a:visited {
+  color: #ff944b; /* orange */
+}
+
+a:hover {
+  color: #51b8f9; /* blue */
+  text-decoration: none;
+}

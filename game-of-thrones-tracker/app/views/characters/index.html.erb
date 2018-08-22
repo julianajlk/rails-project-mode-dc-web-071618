@@ -1,45 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Game of Thrones: Characters</title>
-    <link rel="stylesheet" type="text/css" href="assets/stylesheets/characters.scss">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
-      <body>
-          <h4>Search by Region, House, or Character</h4>
+<h1>All Characters</h1>
+<h5>Search by Region, House, or Character</h5>
 
-          <div class="error">
-            <%= flash.notice %>
-          </div>
+<div class="error">
+  <%= flash.notice %>
+</div>
 
+<div>
   <%= form_tag(characters_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ("Search") %>
+    <div class="search-button"><%= submit_tag ("Search") %></div>
   <% end %>
 
   <%= form_tag(characters_path, method: :get) do %>
     <%= hidden_field_tag(:search, value = nil) %>
-    <%= submit_tag ("Clear Filter") %>
+    <div class="search-button"><%= submit_tag ("Clear Filter") %></div>
   <% end %>
-
+</div>
 <br>
 
-<% @characters.each do |character| %>
-<%= link_to character.name, character_path(character) %>
-<%= link_to "Add to My Characters", "/user_characters/new/#{character.id}" %>
-<br>
-<% end %>
+<div>
+  <% @characters.each do |character| %>
+    <%= link_to character.name, character_path(character) %>
+      <i class="add-button fas fa-plus-circle"><%= link_to "add", "/user_characters/new/#{character.id}" %></i><br>
+    <% end %>
+</div>
 
-<h4><%= link_to "View My Characters", user_characters_path %></h4>
-
-
-  <!-- JQuery, Popper.js, Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+<button><h4><%= link_to "View My Characters", user_characters_path %></h4></button>

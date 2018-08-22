@@ -1,10 +1,12 @@
+<h1>Create a New Account</h1>
+
 <% if @user.errors.any? %>
   <% @user.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
 <% end %>
 
-<%= form_for @user do |f| %>
+<h6><%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %>
   <%= f.label :email %>
@@ -15,3 +17,4 @@
   <%= f.password_field :password_confirmation %>
   <%= f.submit %>
 <% end %>
+</h6>

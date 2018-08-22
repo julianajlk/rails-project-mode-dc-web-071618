@@ -1,11 +1,11 @@
-<h1>House</h1>
-<%= @house.name %><br>
+<h1><%= @house.name %></h1>
+<h4>Characters in this house:</h4><br>
 <% @house.characters.each do |character| %>
   <%= link_to character.name, character_path(character) %><br>
 <% end %>
 <br>
 
 <% if @house.region %>
-<%= link_to "Region", region_path(@house.region) %>
+<h4>This house is in region:</h4><%= link_to @house.region.name, region_path(@house.region) %><br>
 <% end %><br>
-<%= link_to "Back to All Houses", houses_path %>
+<button><%= link_to "Back to All Houses", houses_path %></button>

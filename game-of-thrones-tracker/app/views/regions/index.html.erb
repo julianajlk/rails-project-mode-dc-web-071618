@@ -1,7 +1,7 @@
 <h1>All Regions</h1>
 
 <div>
-<h3>Filter Regions:</h3>
+<h4>Filter Regions:</h4>
 <%= form_tag("/regions", method: "get") do %>
   <%= select_tag "filter", options_for_select(["has houses"]), include_blank: true %>
   <%= submit_tag "Filter" %>

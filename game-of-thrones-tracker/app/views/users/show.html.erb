@@ -1,10 +1,14 @@
-<h1>Welcome <%= current_username.capitalize %>!</h1>
 
-My Characters:<br>
+<!-- <div class="logo"><%= image_tag "logo_got.png" %></div> -->
+<div class="logo_background"><%= image_tag "fire_ice_logo.jpg" %></div> 
+<div class="parallax"></div>
+<h1>Welcome <%= current_username.capitalize %>!</h1><br>
+
+<h4>My Characters:<h4>
 <% @user.user_characters.each do |user_character| %>
-<%= link_to user_character.character.name, user_character_path(user_character) %>
-<br>
+  <%= link_to user_character.character.name, user_character_path(user_character) %><br>
 <% end %>
+<br>
 
-<%= link_to "View All Characters", characters_path %>
-<%= link_to "Add New Character", new_user_character_path  %>
+<button><%= link_to "View All Characters", characters_path %><br></button>
+<button><%= link_to "Add New Character", new_user_character_path  %></button>
