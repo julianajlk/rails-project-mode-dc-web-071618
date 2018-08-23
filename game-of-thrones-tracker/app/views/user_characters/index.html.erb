@@ -54,11 +54,12 @@
 <br>
 
 <% if @user_characters %>
-  <% @user_characters.each do |user_character| %>
+  <% users_characters = UserCharacter.where("id = ?", session[:user_id]) %>
+  <% users_characters.each do |user_character| %>
   <%= link_to user_character.character.name, user_character_path(user_character) %>
   <br>
   <% end %>
-<% end %>
+<% end %><br>
 
 <button><%= link_to "View All Characters", characters_path %></button>
-<button><%= link_to "Add New Character", new_user_character_path  %></button>
+<button><%= link_to "Add New Character", new_user_character_path  %></button><br>

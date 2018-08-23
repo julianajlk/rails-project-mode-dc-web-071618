@@ -21,5 +21,6 @@ class UserCharacter < ApplicationRecord
     location_ids = region_locations.map {|l| l.id}
     UserCharacter.select {|uc| location_ids.include?(uc.location_id)}
   end
-  
+
+
 end
