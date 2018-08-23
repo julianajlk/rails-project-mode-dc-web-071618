@@ -1,5 +1,9 @@
 <h1><%= @user_character.character.name %></h1>
-House: <% if @user_character.house %>
+<% if @user_character.character.image_link %>
+<img src=<%= "https://api.got.show#{@user_character.character.image_link}"%>>
+<% end %><br>
+<div>
+  <h5>House: <% if @user_character.house %>
   <%= link_to @user_character.house.name, house_path(@user_character.house) %>
 <% else %>
   unknown house
@@ -7,7 +11,9 @@ House: <% if @user_character.house %>
 Status: <%= @user_character.status %><br>
 Location: <% if @user_character.location.name %>
   <%= link_to @user_character.location.name, location_path(@user_character.location) %><br>
-  in Region <%= @user_character.location.region.name %>
+  <% if @user_character.location.region %>
+  in Region: <%= link_to @user_character.location.region.name, region_path(@user_character.location.region) %>
+  <% end %>
 <% else %>
   unknown
 <% end %>
@@ -15,8 +21,9 @@ Location: <% if @user_character.location.name %>
 <br>
 <% if @user_character.note %>
 Note: <%= @user_character.note %><br>
-<% end %>
+<% end %></h5>
 <br>
+</div>
 <button><%= link_to "Edit this Character", edit_user_character_path(@user_character) %><br></button>
 <button><%= link_to "Delete this Character", user_character_path(@user_character), method: "delete", data: {confirm: "Delete this character?"} %><br></button>
 <button><%= link_to "Back to My Characters", user_path(session[:user_id]) %></button>

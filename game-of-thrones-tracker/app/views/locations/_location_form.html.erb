@@ -7,12 +7,15 @@
 </ul>
 <br>
 
-<%= form_for @location do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.label :region_id %>
-  <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: 'Unknown' %><br>
-  <%= f.submit %>
-<% end %>
+<div class="form">
+  <h6><%= form_for @location do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %><br>
+    <%= f.label :region_id %><br>
+    <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: 'Unknown' %><br>
+    <div class="form-button"><%= f.submit %></div>
+    <% end %>
+  </h6>
+</div>

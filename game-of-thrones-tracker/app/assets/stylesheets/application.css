@@ -20,40 +20,22 @@
    padding: 100px 0px 30px;
  }
 
- h2, h3, h4, h5, h6 {
+ h2 {
+   font-family: 'MedievalSharp', cursive;
+   padding-top: 30px;
+ }
+
+ h3, h4, h5 {
+   font-family: 'Lato', sans-serif;
+ }
+
+ h6 {
    font-family: 'Lato', sans-serif;
  }
 
  p {
    font-family: 'Lato', sans-serif;
  }
-
- /* imgs */
- .logo-background img {
-   /* display: block; */
-   margin-left: auto;
-   margin-right: auto;
-   /* width: 100%; */
-   height: auto;
-   z-index: 5;
- }
-
- /* background parallax */
- .parallax {
-    /* The image used */
-    background-image: url("fire_ice_logo.jpg");
-    /* background-image: url("background_fire_ice.jpg"); */
-    max-width: 100%;
-
-    /* Set a specific height */
-    height: 300px;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
  /* navigation */
  .login-nav {
@@ -67,7 +49,7 @@
 }
 
 .login-nav a:hover {
-  color: #000;
+  color: #51b8f9; /* blue */
 }
 
 .menu-links {
@@ -92,8 +74,30 @@
   padding-right: 30px;
 }
 
- /* buttons */
+/* links */
+a:link {
+  color: #ff944b; /* orange */
+ }
 
+a:visited {
+  color: #ff944b; /* orange */
+}
+
+a:hover {
+  color: #51b8f9; /* blue */
+  text-decoration: none;
+}
+
+/* imgs */
+.logo-background img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-top: 120px;
+}
+
+/* buttons */
 button {
   background-color: #000;
   border: none;
@@ -117,20 +121,15 @@ button {
 }
 
 .add-button {
-  padding: 0px 20px 40px;
+  padding: 0px 20px 30px;
   color: #ff944b;
 }
 
-/* links */
-a:link {
-  color: #ff944b; /* orange */
- }
+/* form */
+.form {
 
-a:visited {
-  color: #ff944b; /* orange */
-}
+  }
 
-a:hover {
-  color: #51b8f9; /* blue */
-  text-decoration: none;
+.form-button {
+
 }

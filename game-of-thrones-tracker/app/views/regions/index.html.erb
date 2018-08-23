@@ -1,17 +1,18 @@
 <h1>All Regions</h1>
 
-<div>
-<h4>Filter Regions:</h4>
-<%= form_tag("/regions", method: "get") do %>
-  <%= select_tag "filter", options_for_select(["has houses"]), include_blank: true %>
-  <%= submit_tag "Filter" %>
-<% end %>
+<div class="form">
+  <h5>Filter Regions:</h5>
+  <%= form_tag("/regions", method: "get") do %>
+    <%= select_tag "filter", options_for_select(["has houses"]), include_blank: true %>
+    <%= submit_tag "Filter" %>
+    <% end %>
+  </h6>
 </div>
 
 <%= form_tag("/regions", method: "get") do %>
   <%= hidden_field_tag("filter", value = nil) %>
   <%= submit_tag ("Clear Filter") %>
-<% end %>
+<% end %><br>
 
 <% @regions.sort_by {|r| r.name}.each do |region| %>
 <%= link_to region.name, region_path(region) %>

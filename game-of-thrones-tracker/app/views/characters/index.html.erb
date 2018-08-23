@@ -5,23 +5,27 @@
   <%= flash.notice %>
 </div>
 
-<div>
-  <%= form_tag(characters_path, method: :get) do %>
+<div class="form">
+  <h6><%= form_tag(characters_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
     <div class="search-button"><%= submit_tag ("Search") %></div>
-  <% end %>
+    <% end %>
+  </h6>
+</div>
 
-  <%= form_tag(characters_path, method: :get) do %>
+<div class="form">
+  <h6><%= form_tag(characters_path, method: :get) do %>
     <%= hidden_field_tag(:search, value = nil) %>
     <div class="search-button"><%= submit_tag ("Clear Filter") %></div>
-  <% end %>
+    <% end %>
+  </h6>
 </div>
-<br>
+
 
 <div>
   <% @characters.each do |character| %>
     <%= link_to character.name, character_path(character) %>
-      <i class="add-button fas fa-plus-circle"><%= link_to "add", "/user_characters/new/#{character.id}" %></i><br>
+      <a href="/user_characters/new/#{character.id}" <i class="add-button fas fa-plus-circle"></i></a><br>
     <% end %>
 </div>
 
