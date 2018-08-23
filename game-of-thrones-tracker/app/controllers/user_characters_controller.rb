@@ -1,7 +1,26 @@
 class UserCharactersController < ApplicationController
 
   def index
-    @user_characters = UserCharacter.all
+    if params[:status] && !params[:status].empty?
+      @user_characters = UserCharacter.where(status: params[:status])
+      if @user_characters.empty?
+        @message = "No characters found"
+      end
+    elsif params[:user_character] && !params[:user_character].empty?
+      if user_character_params[:location_id]
+        @user_characters = UserCharacter.where(location_id: user_character_params[:location_id])
+        if @user_characters.empty?
+          @message = "No characters found"
+        end
+      elsif user_character_params[:region_id]
+        @user_characters = UserCharacter.find_by_region(user_character_params[:region_id].to_i)
+        if @user_characters.empty?
+          @message = "No characters found"
+        end
+      end
+    else
+      @user_characters = UserCharacter.all
+    end
   end
 
   def show
@@ -18,8 +37,8 @@ class UserCharactersController < ApplicationController
       if !params["user_character"]["location"]["name"].empty?
         new_location = Location.create(
           name: params["user_character"]["location"]["name"],
-          description: params["user_character"]["location"]["description"],
-          region: Region.find(params["user_character"]["location"]["region_id"])
+          description: params["user_character"]["description"],
+          region: Region.find_by(id: params["user_character"]["location"]["region_id"])
         )
         @user_character.location = new_location
         @user_character.save
@@ -39,9 +58,9 @@ class UserCharactersController < ApplicationController
     if @user_character.update(user_character_params)
       if !params["user_character"]["location"]["name"].empty?
         new_location = Location.create(
-          name: params["user_character"]["location"]["name"],
-          description: params["user_character"]["location"]["description"],
-          region: Region.find(params["user_character"]["location"]["region_id"])
+          name: user_character_params["location"]["name"],
+          description: user_character_params["location"]["description"],
+          region: Region.find(user_character_params["location"]["region_id"])
         )
         @user_character.location = new_location
         @user_character.save
@@ -60,7 +79,7 @@ class UserCharactersController < ApplicationController
 
   private
   def user_character_params
-    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :location_id, location_attributes: [:name, :description, :region_id])
+    params.require(:user_character).permit(:character_id, :user_id, :status, :note, :location_id, :region_id, :location, location_attributes: [:name, :description, :region_id])
   end
 
 end

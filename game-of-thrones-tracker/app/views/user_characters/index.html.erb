@@ -1,9 +1,63 @@
-
-
 <h1>My Characters</h1>
-<% @user_characters.each do |user_character| %>
-<%= link_to user_character.character.name, user_character_path(user_character) %>
+
+<!-- Filter by Status -->
+<div class="form">
+  <h5>Filter my Characters by Status:</h5>
+  <%= form_tag("/user_characters", method: "get") do %>
+    <%= select_tag "status", options_for_select(["alive", "dead", "unknown"]), include_blank: true %>
+    <%= submit_tag "Filter by Status" %>
+    <% end %>
+  </h6>
+</div>
+
+<%= form_tag("/user_characters", method: "get") do %>
+  <%= hidden_field_tag("status", value = nil) %>
+  <%= submit_tag ("Clear Status Filter") %>
+<% end %><br>
+<!-- End of Filter by Status -->
+
+<!-- Filter by Location -->
+<div class="form">
+  <h5>Filter my Characters by Location:</h5>
+  <%= form_tag("/user_characters", method: "get") do %>
+    <%= collection_select :user_character, :location_id, Location.all, :id, :name, include_blank: true %>
+    <%= submit_tag "Filter by Location" %>
+    <% end %>
+  </h6>
+</div>
+
+<%= form_tag("/user_characters", method: "get") do %>
+  <%= hidden_field_tag("location_id", value = nil) %>
+  <%= submit_tag ("Clear Location Filter") %>
+<% end %><br>
+<!-- End of Filter by Location -->
+
+<!-- Filter by Region -->
+<div class="form">
+  <h5>Filter my Characters by Region:</h5>
+  <%= form_tag("/user_characters", method: "get") do %>
+    <%= collection_select :user_character, :region_id, Region.all, :id, :name, include_blank: true %>
+    <%= submit_tag "Filter by Region" %>
+    <% end %>
+  </h6>
+</div>
+
+<%= form_tag("/user_characters", method: "get") do %>
+  <%= hidden_field_tag("region_id", value = nil) %>
+  <%= submit_tag ("Clear Region Filter") %>
+<% end %><br>
+<!-- End of Filter by Location -->
+
+<% if @message %>
+<%= @message %>
+<% end %>
 <br>
+
+<% if @user_characters %>
+  <% @user_characters.each do |user_character| %>
+  <%= link_to user_character.character.name, user_character_path(user_character) %>
+  <br>
+  <% end %>
 <% end %>
 
 <button><%= link_to "View All Characters", characters_path %></button>
