@@ -1,4 +1,14 @@
 <h1>All Characters</h1>
+
+<h4>Most Popular Characters:</h4>
+<% Character.most_popular.each do |c| %>
+  <li><%= link_to c.name, character_path(c) %></li>
+<% end %><br>
+
+<h4>Character With Most Titles:</h4>
+<% most_titles = Character.most_titles %>
+  <li><%= link_to most_titles.name, character_path(most_titles) %></li><br>
+
 <h5>Search by Region, House, or Character</h5>
 
 <div class="error">
@@ -8,7 +18,7 @@
 <div class="form">
   <h6><%= form_tag(characters_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
-    <div class="search-button"><%= submit_tag ("Search") %></div>
+    <%= submit_tag ("Search") %>
     <% end %>
   </h6>
 </div>
@@ -16,7 +26,7 @@
 <div class="form">
   <h6><%= form_tag(characters_path, method: :get) do %>
     <%= hidden_field_tag(:search, value = nil) %>
-    <div class="search-button"><%= submit_tag ("Clear Filter") %></div>
+    <div><%= submit_tag ("Clear Filter") %></div>
     <% end %>
   </h6>
 </div>
@@ -27,7 +37,6 @@
     <%= link_to character.name, character_path(character) %>
     <%= link_to '<i class="add-button fas fa-plus-circle"></i>'.html_safe, "/user_characters/new/#{character.id}" %>
       <br>
-    <!-- <a href= <%= "/user_characters/new/#{character.id}"%><i class="add-button fas fa-plus-circle"></i></a><br> -->
     <% end %>
 
 

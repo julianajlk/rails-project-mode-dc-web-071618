@@ -75,6 +75,7 @@
   padding-right: 30px;
 }
 
+
 /* links */
 a:link {
   color: #ff944b; /* orange */
@@ -126,11 +127,8 @@ button {
   color: #ff944b;
 }
 
-/* form */
-.form {
 
-  }
-
-.form-button {
-
+/* body padding */
+body {
+  padding-bottom: 50px;
 }

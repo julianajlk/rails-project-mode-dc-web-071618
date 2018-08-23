@@ -1,5 +1,10 @@
 <h1>All Regions</h1>
 
+<h4>Regions with the Most Houses:</h4>
+<% Region.most_houses.each do |r| %>
+  <li><%= link_to r.name, region_path(r) %></li>
+<% end %><br>
+
 <div class="form">
   <h5>Filter Regions:</h5>
   <%= form_tag("/regions", method: "get") do %>

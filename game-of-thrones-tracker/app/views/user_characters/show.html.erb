@@ -27,4 +27,4 @@ Note: <%= @user_character.note %><br>
 </div>
 <button><%= link_to "Edit this Character", edit_user_character_path(@user_character) %><br></button>
 <button><%= link_to "Delete this Character", user_character_path(@user_character), method: "delete", data: {confirm: "Delete this character?"} %><br></button>
-<button><%= link_to "Back to My Characters", user_path(session[:user_id]) %></button>
+<button><%= link_to "Back to My Characters", user_characters_path %></button>

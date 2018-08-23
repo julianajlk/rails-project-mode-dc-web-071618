@@ -1,6 +1,7 @@
 class UserCharactersController < ApplicationController
 
   def index
+    @user = User.find(session[:user_id])
     if params[:status] && !params[:status].empty?
       @user_characters = UserCharacter.where(status: params[:status])
       if @user_characters.empty?

@@ -5,5 +5,8 @@ class HousesController < ApplicationController
 
   def show
     @house = House.find(params[:id])
+    if @house.characters.empty?
+      @message = "There are no characters in this house."
+    end
   end
 end

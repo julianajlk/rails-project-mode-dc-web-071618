@@ -1,4 +1,13 @@
 <h1>All Houses</h1>
+
+<h4>Houses with the Most Characters:</h4>
+<% House.most_characters.each do |h| %>
+  <li><%= link_to h.name, house_path(h) %></li>
+<% end %><br>
+
+<h4>Oldest House:</h4>
+<li><%= link_to House.oldest.name, house_path(House.oldest.name)%> founded in: <%= House.oldest.founded %></li><br>
+
 <% @houses.sort_by {|h| h.name}.each do |house| %>
 <%= link_to house.name, house_path(house) %>
 <br>

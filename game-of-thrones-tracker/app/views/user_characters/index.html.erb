@@ -1,4 +1,6 @@
-<h1>My Characters</h1>
+<h1>Hello <%= current_username.capitalize %>!</h1>
+
+<h2>My Characters</h2>
 
 <!-- Filter by Status -->
 <div class="form">
@@ -53,13 +55,14 @@
 <% end %>
 <br>
 
-<% if @user_characters %>
-  <% users_characters = UserCharacter.where("id = ?", session[:user_id]) %>
-  <% users_characters.each do |user_character| %>
-  <%= link_to user_character.character.name, user_character_path(user_character) %>
-  <br>
+
+
+<% @user.user_characters.each do |user_character| %>
+  <% if @user_characters.include?(user_character) %>
+    <%= link_to user_character.character.name, user_character_path(user_character) %><br>
   <% end %>
 <% end %><br>
+
 
 <button><%= link_to "View All Characters", characters_path %></button>
 <button><%= link_to "Add New Character", new_user_character_path  %></button><br>

@@ -1,11 +1,16 @@
 <h1>All Locations</h1>
 
+<h4>Most Popular Locations:</h4>
+<% Location.most_characters.each do |l| %>
+  <li><%= link_to l.name, location_path(l) %></li>
+<% end %><br>
+
 <div>
 <h3>Filter Locations:</h3>
 <div class="form">
   <h6><%= form_tag('/locations', method: "get") do %>
     <%= collection_select :location, :region_id, Region.all, :id, :name, include_blank: true %>
-    <div class="search-button"><%= submit_tag ("Filter") %></div>
+    <%= submit_tag ("Filter") %>
     <% end %>
   </h6>
 </div>
@@ -20,4 +25,4 @@
 <br>
 <% end %>
 
-<%= link_to "Create new location", new_location_path %>
+<button><%= link_to "Create new location", new_location_path %></button>

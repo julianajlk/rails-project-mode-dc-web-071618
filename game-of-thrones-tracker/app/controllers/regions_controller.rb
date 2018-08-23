@@ -11,5 +11,8 @@ class RegionsController < ApplicationController
 
   def show
     @region = Region.find(params[:id])
+    if @region.houses.empty?
+      @message = "There are no houses in this region."
+    end
   end
 end

@@ -6,4 +6,7 @@
 <button><%= link_to "Sign Up for Free", new_user_path %><br></button>
 
 <button><%= link_to "View All Characters", characters_path %><br></button>
-<button><%= link_to "Add New Character", new_user_character_path  %></button>
+
+<% if session[:user_id] %>
+  <button><%= link_to "Add New Character", new_user_character_path  %></button>
+<% end %>

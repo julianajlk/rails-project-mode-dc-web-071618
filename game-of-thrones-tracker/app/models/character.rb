@@ -10,6 +10,15 @@ class Character < ApplicationRecord
     Character.select { |c| c.house.region == region }
   end
 
+  def self.most_popular
+    Character.all.sort_by { |c| c.user_characters.count}[-5..-1]
+  end
+
+  def self.most_titles
+    Character.all.sort_by { |c| c.titles.count}[-1]
+  end
+
+
   def self.search(search)
     if search
       character = Character.find_by(name: search)

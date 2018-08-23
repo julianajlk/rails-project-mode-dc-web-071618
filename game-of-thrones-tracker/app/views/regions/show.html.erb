@@ -5,8 +5,11 @@ Locations in this Region:<br>
   <% @region.locations.sort_by {|l| l.name}.each do |location| %>
     <%= link_to location.name, location_path(location) %><br>
   <% end %>
-<% end %>
-<br>
+<% else %>
+  <% if @message %>
+    <%= @message %>
+  <% end %>
+<% end %><br>
 
 <% if !@region.houses.empty? %>
 Houses in this Region:<br>
