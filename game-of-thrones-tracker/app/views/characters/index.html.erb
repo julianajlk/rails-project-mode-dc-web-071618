@@ -25,9 +25,8 @@
 <div>
   <% @characters.each do |character| %>
     <%= link_to character.name, character_path(character) %>
-      <%= link_to action: "/user_characters/new", id: @character.id } %>
-        <i class="add-button fas fa-plus-circle"></i>
-      <% end %>
+    <%= link_to '<i class="add-button fas fa-plus-circle"></i>'.html_safe, "/user_characters/new/#{character.id}" %>
+      <br>
     <!-- <a href= <%= "/user_characters/new/#{character.id}"%><i class="add-button fas fa-plus-circle"></i></a><br> -->
     <% end %>
 
