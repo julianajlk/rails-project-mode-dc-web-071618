@@ -22,7 +22,7 @@ class UserCharactersController < ApplicationController
           region: Region.find(params["user_character"]["location"]["region_id"])
         )
         @user_character.location = new_location
-        @user_character.sa
+        @user_character.save
       end
       redirect_to user_character_path(@user_character)
     else

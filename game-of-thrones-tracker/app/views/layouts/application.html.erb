@@ -19,15 +19,22 @@
 
   <nav>
     <ul class="active menu-links">
-      <a href= <%="/"%>>main</a>
-      <a href= <%="/users/#{session[:user_id]}"%>>my got</a>
+      <a href=<%="/"%>>main</a>
+      <a href=<%="/users/#{session[:user_id]}"%>>my got</a>
       <a href="/characters/">characters</a>
       <a href="/houses/">houses</a>
       <a href="/locations/">locations</a>
       <a href="/regions/">regions</a>
       <div class="login-nav">
-        <a href="/users/new">Sign Up</i></a>
-        <a href="/login"><i class="fas fa-user"></i></a>
+        <% if session[:user_id].nil? %>
+          <a href="/users/new">Sign Up</i></a>
+          <a href="/login"><i class="fas fa-user" class="login_icon"></i></a>
+        <% else %>
+          <%= link_to "Logout", logout_path, method: "DELETE" %>
+          <a href=<%="/users/#{session[:user_id]}"%>>User: <%= current_username %></a>
+        <% end %>
+
+
       </div>
     </ul>
   </nav>
