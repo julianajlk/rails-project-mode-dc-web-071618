@@ -16,4 +16,10 @@ class UserCharacter < ApplicationRecord
     character.house
   end
 
+  def self.find_by_region(region_id)
+    region_locations = Location.locations_by_region(region_id)
+    location_ids = region_locations.map {|l| l.id}
+    UserCharacter.select {|uc| location_ids.include?(uc.location_id)}
+  end
+  
 end

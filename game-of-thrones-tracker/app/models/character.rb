@@ -9,7 +9,6 @@ class Character < ApplicationRecord
   def self.characters_by_region(region)
     Character.select { |c| c.house.region == region }
   end
-  # include Filterable
 
   def self.search(search)
     if search

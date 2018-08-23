@@ -1,13 +1,11 @@
 class LocationsController < ApplicationController
   def index
-    # come back and rework for location filter
-    # if !params[:filter].blank?
-    #   if params[:filter] == "has houses"
-    #     @location = Region.has_houses
-    #   end
-    # else
+    if params[:location]
+      region_locations = Location.where(region_id: location_params[:region_id])
+      @locations = region_locations
+    else
       @locations = Location.all
-    # end
+    end
   end
 
   def show
