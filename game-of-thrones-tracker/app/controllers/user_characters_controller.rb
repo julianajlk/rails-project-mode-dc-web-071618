@@ -15,6 +15,15 @@ class UserCharactersController < ApplicationController
   def create
     @user_character = UserCharacter.new(user_character_params)
     if @user_character.save
+      if !params["user_character"]["location"]["name"].empty?
+        new_location = Location.create(
+          name: params["user_character"]["location"]["name"],
+          description: params["user_character"]["location"]["description"],
+          region: Region.find(params["user_character"]["location"]["region_id"])
+        )
+        @user_character.location = new_location
+        @user_character.sa
+      end
       redirect_to user_character_path(@user_character)
     else
       render :new
@@ -23,12 +32,20 @@ class UserCharactersController < ApplicationController
 
   def edit
     @user_character = UserCharacter.find(params[:id])
-    @user_character.location = Location.new
   end
 
   def update
     @user_character = UserCharacter.find(params[:id])
     if @user_character.update(user_character_params)
+      if !params["user_character"]["location"]["name"].empty?
+        new_location = Location.create(
+          name: params["user_character"]["location"]["name"],
+          description: params["user_character"]["location"]["description"],
+          region: Region.find(params["user_character"]["location"]["region_id"])
+        )
+        @user_character.location = new_location
+        @user_character.save
+      end
       redirect_to user_character_path(@user_character)
     else
       render :edit
