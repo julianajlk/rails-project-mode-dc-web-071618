@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  season: 1
+  season_episode_number: 1
+  total_episode_number: 1
+  director: MyString
+  air_date: 2018-08-24
+  characters: MyText
+  previous_episode: MyString
+  next_episode: MyString
+
+two:
+  name: MyString
+  season: 1
+  season_episode_number: 1
+  total_episode_number: 1
+  director: MyString
+  air_date: 2018-08-24
+  characters: MyText
+  previous_episode: MyString
+  next_episode: MyString

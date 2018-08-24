@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_183831) do
+ActiveRecord::Schema.define(version: 2018_08_24_142434) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 2018_08_22_183831) do
     t.string "culture"
     t.text "titles"
     t.string "image_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.string "name"
+    t.integer "season"
+    t.integer "season_episode_number"
+    t.integer "total_episode_number"
+    t.string "director"
+    t.date "air_date"
+    t.text "characters"
+    t.string "previous_episode"
+    t.string "next_episode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_183831) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.integer "episode_id"
   end
 
 end

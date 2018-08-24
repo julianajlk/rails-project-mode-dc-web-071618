@@ -12,4 +12,8 @@ class Region < ApplicationRecord
     Region.all.sort_by{ |r| r.houses.count}[-3..-1]
   end
 
+  def self.has_locations
+    all.select {|r| r.locations != []}
+  end
+
 end

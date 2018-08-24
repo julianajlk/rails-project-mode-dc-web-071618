@@ -3,6 +3,8 @@ class RegionsController < ApplicationController
     if !params[:filter].blank?
       if params[:filter] == "has houses"
         @regions = Region.has_houses
+      elsif params[:filter] == "has locations"
+        @regions = Region.has_locations
       end
     else
       @regions = Region.all

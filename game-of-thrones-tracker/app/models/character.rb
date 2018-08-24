@@ -15,7 +15,7 @@ class Character < ApplicationRecord
   end
 
   def self.most_titles
-    Character.all.sort_by { |c| c.titles.count}[-1]
+    Character.all.sort_by { |c| c.titles.count}[-4..-1]
   end
 
 

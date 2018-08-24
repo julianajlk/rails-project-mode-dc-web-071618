@@ -8,6 +8,24 @@
 <h4>Oldest House:</h4>
 <li><%= link_to House.oldest.name, house_path(House.oldest)%> founded in: <%= House.oldest.founded %></li><br>
 
+
+<h3>Filter Houses by Region:</h3>
+<div class="form">
+  <h6><%= form_tag('/houses', method: "get") do %>
+    <%= collection_select :house, :region_id, Region.has_houses, :id, :name, include_blank: true %>
+    <%= submit_tag ("Filter") %>
+    <% end %>
+  </h6>
+</div>
+
+<div class="form">
+  <h6><%= form_tag("/houses", method: "get") do %>
+    <%= hidden_field_tag(:region_id, value = nil) %>
+    <%= submit_tag ("Clear Filter") %>
+    <% end %>
+  </h6>
+</div><br>
+
 <% @houses.sort_by {|h| h.name}.each do |house| %>
 <%= link_to house.name, house_path(house) %>
 <br>
