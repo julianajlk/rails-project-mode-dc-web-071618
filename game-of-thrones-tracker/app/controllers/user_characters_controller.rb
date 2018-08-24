@@ -38,7 +38,7 @@ class UserCharactersController < ApplicationController
       if !params["user_character"]["location"]["name"].empty?
         new_location = Location.create(
           name: params["user_character"]["location"]["name"],
-          description: params["user_character"]["description"],
+          description: params["user_character"]["location"]["description"],
           region: Region.find_by(id: params["user_character"]["location"]["region_id"])
         )
         @user_character.location = new_location

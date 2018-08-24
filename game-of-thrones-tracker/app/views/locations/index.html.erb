@@ -6,23 +6,26 @@
 <% end %><br>
 
 <div>
-<h3>Filter Locations:</h3>
+<h3>Filter Locations by Region:</h3>
 <div class="form">
   <h6><%= form_tag('/locations', method: "get") do %>
-    <%= collection_select :location, :region_id, Region.all, :id, :name, include_blank: true %>
+    <%= collection_select :location, :region_id, Region.all, :id, :name, include_blank: 'Unknown' %>
     <%= submit_tag ("Filter") %>
     <% end %>
   </h6>
 </div>
 
-<%= form_tag("/locations", method: "get") do %>
-  <%= hidden_field_tag(:region_id, value = nil) %>
-  <%= submit_tag ("Clear Filter") %>
-<% end %>
+<div class="form">
+  <h6><%= form_tag("/locations", method: "get") do %>
+    <%= hidden_field_tag(:region_id, value = nil) %>
+    <%= submit_tag ("Clear Filter") %>
+    <% end %>
+  </h6>
+</div><br>
 
 <% @locations.sort_by {|l| l.name}.each do |location| %>
-<%= link_to location.name, location_path(location) %>
+<h4><%= link_to location.name, location_path(location) %></h4>
 <br>
 <% end %>
 
-<button><%= link_to "Create new location", new_location_path %></button>
+<button><%= link_to "Create New Location", new_location_path %></button>

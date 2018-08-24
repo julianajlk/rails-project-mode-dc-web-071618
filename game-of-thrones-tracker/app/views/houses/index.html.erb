@@ -6,7 +6,7 @@
 <% end %><br>
 
 <h4>Oldest House:</h4>
-<li><%= link_to House.oldest.name, house_path(House.oldest.name)%> founded in: <%= House.oldest.founded %></li><br>
+<li><%= link_to House.oldest.name, house_path(House.oldest)%> founded in: <%= House.oldest.founded %></li><br>
 
 <% @houses.sort_by {|h| h.name}.each do |house| %>
 <%= link_to house.name, house_path(house) %>

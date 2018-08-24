@@ -6,7 +6,7 @@
 <div class="form">
   <h5>Filter my Characters by Status:</h5>
   <%= form_tag("/user_characters", method: "get") do %>
-    <%= select_tag "status", options_for_select(["alive", "dead", "unknown"]), include_blank: true %>
+    <%= select_tag "status", options_for_select(["unknown", "alive", "dead"])%>
     <%= submit_tag "Filter by Status" %>
     <% end %>
   </h6>
@@ -22,7 +22,7 @@
 <div class="form">
   <h5>Filter my Characters by Location:</h5>
   <%= form_tag("/user_characters", method: "get") do %>
-    <%= collection_select :user_character, :location_id, Location.all, :id, :name, include_blank: true %>
+    <%= collection_select :user_character, :location_id, Location.all, :id, :name, include_blank: 'unknown' %>
     <%= submit_tag "Filter by Location" %>
     <% end %>
   </h6>
@@ -38,7 +38,7 @@
 <div class="form">
   <h5>Filter my Characters by Region:</h5>
   <%= form_tag("/user_characters", method: "get") do %>
-    <%= collection_select :user_character, :region_id, Region.all, :id, :name, include_blank: true %>
+    <%= collection_select :user_character, :region_id, Region.all, :id, :name, include_blank: "unknown" %>
     <%= submit_tag "Filter by Region" %>
     <% end %>
   </h6>
@@ -55,14 +55,30 @@
 <% end %>
 <br>
 
-
+<!-- Display my characters -->
 
 <% @user.user_characters.each do |user_character| %>
   <% if @user_characters.include?(user_character) %>
-    <%= link_to user_character.character.name, user_character_path(user_character) %><br>
+    <h3><%= link_to user_character.character.name, user_character_path(user_character) %><br></h3>
   <% end %>
 <% end %><br>
 
 
 <button><%= link_to "View All Characters", characters_path %></button>
 <button><%= link_to "Add New Character", new_user_character_path  %></button><br>
+
+<!-- End characters section -->
+
+<!-- Begin Location Section -->
+<% if !@user.locations_with_user_characters.empty? %>
+  <h2>My Characters are currently in: </h2>
+  <% @user.locations_with_user_characters.each do |location| %>
+    <% if location %>
+      <h3><%= link_to location.name, location_path(location) %><br></h3>
+    <% end %>
+  <% end %>
+<% end %><br>
+
+
+<button><%= link_to "Create New Location", new_location_path %></button>
+<button><%= link_to "Back to All Locations", locations_path %></button>

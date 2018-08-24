@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def locations_with_user_characters
+    user_characters.map {|uc| uc.location}.uniq
+  end
+
 end

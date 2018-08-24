@@ -1,7 +1,24 @@
 <h1><%= @house.name %></h1>
+<% if @house.image_link %>
+<img src=<%= "https://api.got.show#{@house.image_link}"%>>
+<% end %><br>
+<% if @house.coat_of_arms %>
+<h3>Coat of Arms: <%= @house.coat_of_arms %></h3><br>
+<% end %>
+<% if @house.founded %>
+  <h3>Founded in: <%= @house.founded %></h3>
+<% end %>
+<% if @house.words %>
+  <h3>Words: <%= @house.words %></h3>
+<% end %>
+
+<% if @house.region %>
+<h4>This house is in region:</h4>
+<%= link_to @house.region.name, region_path(@house.region) %><br>
+<% end %><br>
 
 <% if !@house.characters.empty? %>
-  <h4>Characters in this house:</h4><br>
+  <h4>Characters in this house:</h4>
   <% @house.characters.each do |character| %>
     <%= link_to character.name, character_path(character) %><br>
   <% end %>
@@ -12,7 +29,4 @@
 <% end %><br>
 
 
-<% if @house.region %>
-<h4>This house is in region:</h4><%= link_to @house.region.name, region_path(@house.region) %><br>
-<% end %><br>
 <button><%= link_to "Back to All Houses", houses_path %></button>
