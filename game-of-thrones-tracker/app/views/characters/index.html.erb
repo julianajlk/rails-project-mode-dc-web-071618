@@ -5,11 +5,12 @@
   <li><%= link_to c.name, character_path(c) %></li>
 <% end %><br>
 
-<h4>Character With Most Titles:</h4>
-<% most_titles = Character.most_titles %>
-  <li><%= link_to most_titles.name, character_path(most_titles) %></li><br>
+<h4>Characters With The Most Titles:</h4>
+<% Character.most_titles.each do |c| %>
+  <li><%= link_to c.name, character_path(c) %></li>
+<% end %><br>
 
-<h5>Search by Region, House, or Character</h5>
+<h5>Search Characters by Region, House, or Character</h5>
 
 <div class="error">
   <%= flash.notice %>

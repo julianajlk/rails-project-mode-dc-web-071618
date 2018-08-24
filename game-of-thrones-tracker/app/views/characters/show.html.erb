@@ -1,5 +1,7 @@
 <h1><%= @character.name %></h1>
-House: <%= link_to @character.house.name, house_path(@character.house) %><br>
+<% if @character.house %>
+  House: <%= link_to @character.house.name, house_path(@character.house) %><br>
+<% end %>
 <% if !@character.titles.empty? %>
 Title(s): <% @character.titles.each do |title| %>
     <li><%= title %></li>

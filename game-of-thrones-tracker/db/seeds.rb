@@ -29,9 +29,17 @@ end
 locations = [
   {name: "Winterfell", region: "North", description: "a castle that is the seat of House Stark"},
   {name: "Eyrie", region: "Vale of Arryn", description: "a castle that is considered impregnable to attack and is the seat of House Arryn"},
-  {name: "King's Landing", region: "Crownlands", description: "the capital of the Seven Kingdoms"}
+  {name: "King's Landing", region: "Crownlands", description: "the capital of the Seven Kingdoms"},
+  {name: "Pentos", region: "Free Cities", description: "a large, rich city-state of merchant lords located on the western coastline of Essos"},
+  {name: "Castle Black", region: "North", description: "the primary headquarters of the Night's Watch, located roughly halfway along the length of the Wall on its southern side"},
+  {name: "Moat Cailin", region: "North", description: "a ruined collection of towers, vital for the North's defense"},
+  {name: "Riverrun", region: "Riverlands", description: "a large castle that is the seat of House Tully"},
+  {name: "Kingsroad", description: "the longest highway in the Seven Kingdoms, running from Castle Black to King's Landing"},
+  {name: "Crossroads Inn", region: "Riverlands", description: "a popular stop for travelers on the Kingsroad, lies of the meeting points of major roads"},
+  {name: "Vaes Dothrak", region: "Dothraki sea", description: "a Dothraki trading city where it if forbidden to draw a sword"},
+  {name: "Casterly Rock", region: "Westerlands", description: "ancestral stronghold of House Lannister, located on the Western coast of Westeros"}
   ]
-  
+
 locations.each do |location|
   Location.create(
     name: location[:name],
@@ -56,14 +64,16 @@ houses.each do |house|
   else
     region = house["region"]
   end
-  House.create(
-    name: house["name"],
-    coat_of_arms: house["coatOfArms"],
-    words: house["words"],
-    region: Region.find_by(name: region),
-    founded: house["founded"],
-    image_link: house["imageLink"]
-  )
+  if house["name"] != "Henly (House Ashford)" && house["name"] != "Norren (House Mooton)"
+    House.create(
+      name: house["name"],
+      coat_of_arms: house["coatOfArms"],
+      words: house["words"],
+      region: Region.find_by(name: region),
+      founded: house["founded"],
+      image_link: house["imageLink"]
+    )
+  end
 end
 
 api_characters = RestClient.get('https://api.got.show/api/characters/')
