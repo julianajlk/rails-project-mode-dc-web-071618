@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
       @current_user.username
     else
       @current_user = User.find_by(id: session[:user_id])
-      @current_user.username
     end
+    @current_user.username
   end
 
 end

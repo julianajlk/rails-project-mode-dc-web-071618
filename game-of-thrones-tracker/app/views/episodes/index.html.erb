@@ -8,10 +8,38 @@
 
 <div>
   <h2>Episodes</h2>
-  <% @episodes.sort_by {|e| e.total_episode_number}.each do |episode| %>
-    <li><%= link_to episode.name, episode_path(episode) %></li>
-  <% end %>
+  <h5>Season 1: </h5>
+    <%  season1 = Episode.where(season: 1).order(:season_episode_number) %>
+      <% season1.each do |e| %>
+        <li><%= link_to e.name, episode_path(e) %></li>
+      <% end %><br>
+  <h5>Season 2: </h5>
+    <%  season1 = Episode.where(season: 2).order(:season_episode_number) %>
+      <% season1.each do |e| %>
+        <li><%= link_to e.name, episode_path(e) %></li>
+      <% end %><br>
+  <h5>Season 3: </h5>
+    <%  season1 = Episode.where(season: 3).order(:season_episode_number) %>
+      <% season1.each do |e| %>
+        <li><%= link_to e.name, episode_path(e) %></li>
+      <% end %><br>
+  <h5>Season 4: </h5>
+    <%  season1 = Episode.where(season: 4).order(:season_episode_number) %>
+      <% season1.each do |e| %>
+        <li><%= link_to e.name, episode_path(e) %></li>
+      <% end %><br>
+  <h5>Season 5: </h5>
+    <%  season1 = Episode.where(season: 5).order(:season_episode_number) %>
+      <% season1.each do |e| %>
+        <li><%= link_to e.name, episode_path(e) %></li>
+      <% end %><br>
 </div>
+
+
+
+  <!-- <% @episodes.sort_by {|e| e.total_episode_number}.each do |episode| %>
+    <li><%= link_to episode.name, episode_path(episode) %></li>
+  <% end %> -->
 
 <% if @user.episode %>
 <button><h4><%= link_to "My Current Episode", episode_path(@user.episode) %></h4></button> -->

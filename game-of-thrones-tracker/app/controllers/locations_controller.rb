@@ -3,6 +3,9 @@ class LocationsController < ApplicationController
     if params[:location]
       region_locations = Location.where(region_id: location_params[:region_id])
       @locations = region_locations
+      if region_locations.empty?
+        @message = "No locations in this region"
+      end
     else
       @locations = Location.all
     end

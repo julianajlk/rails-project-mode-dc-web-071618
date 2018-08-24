@@ -28,4 +28,8 @@
 <br>
 <% end %>
 
+<% if @message %>
+  <%= @message %><br>
+<% end %><br>
+
 <button><%= link_to "Create New Location", new_location_path %></button>

@@ -21,6 +21,12 @@ class UserCharactersController < ApplicationController
       end
     else
       @user_characters = UserCharacter.all
+      if @user_characters.empty?
+        @message = "You are not tracking any characters"
+      end
+    end
+    if @user.locations_with_user_characters.empty?
+      @message2 = "No characters with locations"
     end
   end
 

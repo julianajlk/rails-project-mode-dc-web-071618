@@ -1,0 +1,10 @@
+<h1>Update Episode</h1>
+
+<div class="form">
+  <h6><%= form_for @user, url: { action: "update_episode", method: "patch"} do |f| %>
+    <%= f.label :episode_id %><br>
+    <%= f.collection_select :episode_id, Episode.sort_episodes, :id, :name, include_blank: "Select Episode"%><br>
+    <div class="form-button"><%= f.submit "Update Episode"%></div>
+    <% end %>
+  </h6>
+</div>

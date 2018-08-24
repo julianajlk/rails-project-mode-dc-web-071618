@@ -25,6 +25,7 @@
       <% else %>
         <a href=<%="/user_characters/"%>>my got</a>
       <% end %>
+      <a href="/episodes/">episodes</a>
       <a href="/characters/">characters</a>
       <a href="/houses/">houses</a>
       <a href="/locations/">locations</a>
@@ -35,7 +36,9 @@
           <a href="/login"><i class="fas fa-user" class="login_icon"></i></a>
         <% else %>
           <%= link_to "Logout", logout_path, method: "DELETE" %>
+            <% if current_username %>
           <a href=<%="/users/#{session[:user_id]}"%>>User: <%= current_username %></a>
+            <% end %>
         <% end %>
       </div>
     </ul>

@@ -1,5 +1,10 @@
 <h1>Hello <%= current_username.capitalize %>!</h1>
 
+<% if @user.episode %>
+  <h5>Currently Watching: <%= link_to @user.episode.name, episode_path(@user.episode) %></h5>
+<% end %>
+  <%= link_to "Update Episode", users_update_episode_path %>
+
 <h2>My Characters</h2>
 
 <!-- Filter by Status -->
@@ -70,13 +75,17 @@
 <!-- End characters section -->
 
 <!-- Begin Location Section -->
+<h2>My Characters are currently in: </h2>
 <% if !@user.locations_with_user_characters.empty? %>
-  <h2>My Characters are currently in: </h2>
   <% @user.locations_with_user_characters.each do |location| %>
     <% if location %>
       <h3><%= link_to location.name, location_path(location) %><br></h3>
     <% end %>
   <% end %>
+<% else %>
+  <% if @message2 %>
+    <%= @message2 %>
+  <% end %><br>
 <% end %><br>
 
 
