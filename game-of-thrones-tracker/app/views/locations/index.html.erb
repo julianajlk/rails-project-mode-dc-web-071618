@@ -18,7 +18,7 @@
 <div class="form">
   <h6><%= form_tag("/locations", method: "get") do %>
     <%= hidden_field_tag(:region_id, value = nil) %>
-    <%= submit_tag ("Clear Filter") %>
+    <div class="form-button"><%= submit_tag ("Clear Filter") %></div>
     <% end %>
   </h6>
 </div><br>

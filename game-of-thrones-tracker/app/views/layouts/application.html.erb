@@ -20,7 +20,11 @@
   <nav>
     <ul class="active menu-links">
       <a href=<%="/"%>>main</a>
-      <a href=<%="/user_characters/"%>>my got</a>
+      <% if session[:user_id].nil? %>
+        <a href=<%="/login"%>>my got</a>
+      <% else %>
+        <a href=<%="/user_characters/"%>>my got</a>
+      <% end %>
       <a href="/characters/">characters</a>
       <a href="/houses/">houses</a>
       <a href="/locations/">locations</a>
@@ -33,8 +37,6 @@
           <%= link_to "Logout", logout_path, method: "DELETE" %>
           <a href=<%="/users/#{session[:user_id]}"%>>User: <%= current_username %></a>
         <% end %>
-
-
       </div>
     </ul>
   </nav>

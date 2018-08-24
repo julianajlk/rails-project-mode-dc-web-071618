@@ -18,7 +18,7 @@
 <div class="form">
   <h6><%= form_tag(characters_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ("Search") %>
+    <div class="form-button"><%= submit_tag ("Search") %></div>
     <% end %>
   </h6>
 </div>
@@ -26,11 +26,10 @@
 <div class="form">
   <h6><%= form_tag(characters_path, method: :get) do %>
     <%= hidden_field_tag(:search, value = nil) %>
-    <div><%= submit_tag ("Clear Filter") %></div>
+    <div class="form-button"><%= submit_tag ("Clear Filter") %></div>
     <% end %>
   </h6>
 </div>
-
 
 <div>
   <% @characters.each do |character| %>

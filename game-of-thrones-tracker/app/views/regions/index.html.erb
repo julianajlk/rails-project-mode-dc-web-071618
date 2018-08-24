@@ -16,7 +16,7 @@
 
 <%= form_tag("/regions", method: "get") do %>
   <%= hidden_field_tag("filter", value = nil) %>
-  <%= submit_tag ("Clear Filter") %>
+  <div class="form-button"><%= submit_tag ("Clear Filter") %></div>
 <% end %><br>
 
 <% @regions.sort_by {|r| r.name}.each do |region| %>

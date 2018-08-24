@@ -14,7 +14,7 @@
 
 <%= form_tag("/user_characters", method: "get") do %>
   <%= hidden_field_tag("status", value = nil) %>
-  <%= submit_tag ("Clear Status Filter") %>
+  <div class="form-button"><%= submit_tag ("Clear Status Filter") %></div>
 <% end %><br>
 <!-- End of Filter by Status -->
 
@@ -30,7 +30,7 @@
 
 <%= form_tag("/user_characters", method: "get") do %>
   <%= hidden_field_tag("location_id", value = nil) %>
-  <%= submit_tag ("Clear Location Filter") %>
+  <div class="form-button"><%= submit_tag ("Clear Location Filter") %></div>
 <% end %><br>
 <!-- End of Filter by Location -->
 
@@ -46,7 +46,7 @@
 
 <%= form_tag("/user_characters", method: "get") do %>
   <%= hidden_field_tag("region_id", value = nil) %>
-  <%= submit_tag ("Clear Region Filter") %>
+  <div class="form-button"><%= submit_tag ("Clear Region Filter") %></div>
 <% end %><br>
 <!-- End of Filter by Location -->
 

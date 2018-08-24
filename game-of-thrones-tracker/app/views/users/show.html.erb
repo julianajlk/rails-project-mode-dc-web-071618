@@ -1,10 +1,13 @@
 <h1>Welcome <%= current_username.capitalize %>!</h1>
 
-<h4><%= link_to "My Characters:", user_characters_path %><h4>
-<% @user.user_characters.each do |user_character| %>
-  <%= link_to user_character.character.name, user_character_path(user_character) %><br>
-<% end %>
-<br>
+<h4>Username: <%= @user.username %></h4><br>
+<h4>Email: <%= @user.email %></h4><br>
+
+<button><%= link_to "Edit Your Account", edit_user_path %></button><br>
+
+<div class="user-page">
+  <h3><%= link_to "View My Characters", user_characters_path %><h3><br>
+</div>
 
 <button><%= link_to "View All Characters", characters_path %><br></button>
-<button><%= link_to "Add New Character", new_user_character_path  %></button>
+<button><%= link_to "Add New Character", new_user_character_path %></button>

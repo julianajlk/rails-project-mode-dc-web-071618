@@ -127,8 +127,29 @@ button {
   color: #ff944b;
 }
 
+.form-button {
+  padding-top: 10px;
+}
+
 
 /* body padding */
 body {
   padding-bottom: 50px;
+}
+
+.user-page {
+  padding-top: 35px;
+}
+
+/* error messages */
+.error-message {
+  color: #dc3545; /* red */
+}
+
+.field_with_errors {
+    display: inline;
+}
+
+.field_with_errors input {
+    border: red 1px solid;
 }
