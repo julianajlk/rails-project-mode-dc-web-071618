@@ -7,6 +7,19 @@
 
 <h2>My Characters</h2>
 
+<% if @message %>
+<%= @message %>
+<% end %>
+<br>
+
+<!-- Display my characters -->
+
+<% @user.user_characters.each do |user_character| %>
+  <% if @user_characters.include?(user_character) %>
+    <h3><%= link_to user_character.character.name, user_character_path(user_character) %><br></h3>
+  <% end %>
+<% end %><br>
+
 <!-- Filter by Status -->
 <div class="form">
   <h5>Filter my Characters by Status:</h5>
@@ -54,19 +67,6 @@
   <div class="form-button"><%= submit_tag ("Clear Region Filter") %></div>
 <% end %><br>
 <!-- End of Filter by Location -->
-
-<% if @message %>
-<%= @message %>
-<% end %>
-<br>
-
-<!-- Display my characters -->
-
-<% @user.user_characters.each do |user_character| %>
-  <% if @user_characters.include?(user_character) %>
-    <h3><%= link_to user_character.character.name, user_character_path(user_character) %><br></h3>
-  <% end %>
-<% end %><br>
 
 
 <button><%= link_to "View All Characters", characters_path %></button>

@@ -40,7 +40,8 @@
   <!-- <% @episodes.sort_by {|e| e.total_episode_number}.each do |episode| %>
     <li><%= link_to episode.name, episode_path(episode) %></li>
   <% end %> -->
-
+<% if session[:user_id] %>
 <% if @user.episode %>
 <button><h4><%= link_to "My Current Episode", episode_path(@user.episode) %></h4></button> -->
+<% end %>
 <% end %>
