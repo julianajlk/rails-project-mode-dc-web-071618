@@ -1,0 +1,25 @@
+<h1>Episode Name: <%= @episode.name %></h1>
+Season: <%= @episode.season %><br>
+Episode: <%= @episode.season_episode_number %><br>
+Director: <%= @episode.director %><br>
+Air Date: <%= @episode.air_date %><br>
+
+<% if @episode.previous_episode %>
+  <% previous = Episode.find_by(name: @episode.previous_episode) %>
+  Previous Episode: <%= link_to @episode.previous_episode, episode_path(previous) %><br>
+<% end %>
+
+<% if @episode.next_episode %>
+  <% next_ep = Episode.find_by(name: @episode.next_episode) %>
+  Next Episode: <%= link_to @episode.next_episode, episode_path(next_ep) %><br>
+<% end %>
+
+
+<% if !@episode.characters.empty? %>
+Characters in this Episode: <% @episode.characters.each do |c| %><br>
+    <% character = Character.find_by(name: c) %>
+    <li><%= link_to character.name, character_path(character) %></li>
+  <% end %>
+<% end %><br>
+
+<button><%= link_to "Back to All Episodes", episodes_path %></button>

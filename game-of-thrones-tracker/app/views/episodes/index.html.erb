@@ -1,0 +1,18 @@
+<h1>All Episodes</h1>
+
+<h4>Most Users Are Currently Watching:</h4>
+<% Episode.most_popular.each do |e| %>
+  <li><%= link_to e.name, episode_path(e) %></li>
+<% end %><br>
+
+
+<div>
+  <h2>Episodes</h2>
+  <% @episodes.sort_by {|e| e.total_episode_number}.each do |episode| %>
+    <li><%= link_to episode.name, episode_path(episode) %></li>
+  <% end %>
+</div>
+
+<% if @user.episode %>
+<button><h4><%= link_to "My Current Episode", episode_path(@user.episode) %></h4></button> -->
+<% end %>

@@ -13,6 +13,7 @@ House.destroy_all
 Character.destroy_all
 User.destroy_all
 UserCharacter.destroy_all
+Episode.destroy_all
 
 api_regions = RestClient.get('https://api.got.show/api/regions/')
 regions = JSON.parse(api_regions)
@@ -87,6 +88,23 @@ characters.each do |character|
     culture: character["culture"],
     titles: character["titles"],
     image_link: character["imageLink"]
+  )
+end
+
+api_episodes = RestClient.get('https://api.got.show/api/episodes/')
+episodes = JSON.parse(api_episodes)
+
+episodes.each do |episode|
+  Episode.create(
+    name: episode["name"],
+    season: episode["season"],
+    season_episode_number: episode["nr"],
+    total_episode_number: episode["totalNr"],
+    director: episode["director"],
+    air_date: episode["airDate"],
+    characters: episode["characters"],
+    previous_episode: episode["predecessor"],
+    next_episode: episode["successor"]
   )
 end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :episodes
   get 'sessions/new'
   resources :locations
   resources :regions
